@@ -53,7 +53,43 @@ Outras maneiras de definir uma Struct:
 */
 
 
+
+arvore* criaArvore(){
+  	return NULL;
+}
+/*
+Instancia um ponteiro NULL, para o nó raiz.
+ou seja cria uma arvore vazia.
+*/
+
+
+
+int arvoreVazia(arvore* texte)
+{
+  return texte == NULL;
+}
+/*
+Verifica se uma árvore é vazia
+Retorna 1 se a árvore for vazia
+e 0 caso a arvore esteja preenchida
+*/
+
+void arvoreVaziaCompleta(arvore* texte)
+{
+	if(texte == NULL){
+		printf("Arvore esta vazia");
+	}else{
+		printf("Arvore nao esta vazia,\n O valor inicial de sua raiz e %i", texte->conteudo);
+	}
+}
+
+
+
+
 int main(){
-	
+	arvore* a = criaArvore();
+	int informaVazia = arvoreVazia(a);
+	printf("%i\n", informaVazia);
+	arvoreVaziaCompleta(a);
 }
 
