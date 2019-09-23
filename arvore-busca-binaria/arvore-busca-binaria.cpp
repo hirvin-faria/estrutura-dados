@@ -129,6 +129,20 @@ quando chegar a uma das folhas da arvore.
 
 
 
+void imprimir(arvore *local){
+	if(local != NULL){
+		imprimir(local->subArvoreEsquerda);
+		printf("\n%i", local->conteudo);
+		imprimir(local->subArvoreDireita);
+	}
+}
+/*
+Esta função faz a impressão da arvore em ordem
+primeiro imprimindo a subArvoreEsquerda e após a subArvoreDireita.
+*/
+
+
+
 int main(){
 	arvore *a = criaArvore();
 	int informaVazia = arvoreVazia(a);
@@ -141,5 +155,7 @@ int main(){
 	inserir(&a, 2);
 	
 	arvoreVaziaCompleta(a);
+	
+	imprimir(a);
 }
 
