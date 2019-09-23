@@ -74,22 +74,72 @@ Retorna 1 se a árvore for vazia
 e 0 caso a arvore esteja preenchida
 */
 
-void arvoreVaziaCompleta(arvore* texte)
+
+
+void arvoreVaziaCompleta(arvore *texte)
 {
 	if(texte == NULL){
-		printf("Arvore esta vazia");
+		printf("\nArvore esta vazia");
 	}else{
-		printf("Arvore nao esta vazia,\n O valor inicial de sua raiz e %i", texte->conteudo);
+		printf("\nArvore nao esta vazia\nO valor inicial de sua raiz e %i", texte->conteudo);
 	}
 }
+/*
+Está função faz o teste para verificar se a arvore está vazia
+Ela recebe como parametro o tipo arvore
+Verifica se a texte e igual a NULL
+Caso seja igual então a arvore esta vazia,
+Se não a arvore não é vazia
+e a função imprime o valor raiz da arvore
+acessando o parametro conteudo
+*/
 
+
+
+void inserir(arvore* *local, int conteudoInserido){
+	if(*local == NULL){
+		*local = (arvore*)malloc(sizeof(arvore));
+		(*local)->subArvoreEsquerda = NULL;
+		(*local)->subArvoreDireita = NULL;
+		(*local)->conteudo = conteudoInserido;
+	}else{
+		if(conteudoInserido < (*local)->conteudo){
+			inserir(&(*local)->subArvoreEsquerda, conteudoInserido);
+		}else{
+			inserir(&(*local)->subArvoreDireita, conteudoInserido);
+		}
+	}
+}
+/*
+Esta função insere um valor dentro da arvore
+Primeiro verifica se a arvore é vazia
+Caso a arvore seja vazia a função
+instancia uma nova arvore
+e define os valores para a subArvoreDireita e subArvoreEsquerda para NULL
+após aplica o novo conteudo que está sendo inserido no conteudo da arvore
+
+Caso o local não seje NULL.
+A função verifica se o conteúdo inserido e menor ou maior
+Caso seja menor ele percorre a subArvoreEsquerda e chama uma recursão
+E se for maior ele percorre a subArvoreDireita e chama a recursão
+
+A recursão ira instanciar uma nova subArvore que será uma folha apontando para NULL
+quando chegar a uma das folhas da arvore.
+*/
 
 
 
 int main(){
-	arvore* a = criaArvore();
+	arvore *a = criaArvore();
 	int informaVazia = arvoreVazia(a);
 	printf("%i\n", informaVazia);
+	
+	arvoreVaziaCompleta(a);
+	
+	inserir(&a, 5);
+	inserir(&a, 8);
+	inserir(&a, 2);
+	
 	arvoreVaziaCompleta(a);
 }
 
